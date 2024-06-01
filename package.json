@@ -1,0 +1,20 @@
+{
+  "name": "michis-api",
+  "version": "1.0.0",
+  "description": "API con gatitos",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node --watch app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Clarisa Schiavi",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "mysql2": "^3.10.0",
+    "zod": "^3.23.8"
+  }
+}
