@@ -2,6 +2,7 @@ import { CatModel } from "../model/catmodel.js";    //Import del modelo
 import { validateCat, validatePartialCat } from "../validators/catSchema.js"; //Import del validador que usare en post y patch
 
 export class GatosController {
+    //Obtener todos los gatos
     static async getAllCats(req, res) {
         const gatos = await CatModel.getAll();
         gatos
@@ -13,7 +14,7 @@ export class GatosController {
                 .json({ info: { status: 404, message: "No encontrado" } });
     }
 
-    //Filtrar por raza
+    //Buscar por raza
     static async searchByBreed(req, res) {
         const { raza } = req.query;
         const filteredByBreed = await CatModel.searchByBreed(raza);
@@ -24,7 +25,7 @@ export class GatosController {
         }
 
     }
-    //Filtrar por id
+    //Buscar por id
     static async getById(req, res) {
         const { gatoId } = req.params;
         const gato = await CatModel.searchById(gatoId);
@@ -37,7 +38,7 @@ export class GatosController {
                 .json({ info: { status: 404, message: "Gato no encontrado" } });
     }
 
-    //Eliminar gato por id
+    //Eliminar por id
     static async deleteById(req, res) {
         const { gatoId } = req.params;
         const info = await CatModel.deleteById(gatoId);
@@ -80,7 +81,7 @@ export class GatosController {
                 .json({ info: { status: 500, message: "Error interno del servidor" } });
     }
 
-    //Actualizar gato existente
+    //Actualizar por id
     static async updateById(req, res) {
         const { gatoId } = req.params;
         const esGato = await CatModel.searchById(gatoId);
