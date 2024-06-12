@@ -1,5 +1,5 @@
-import {validateCat, validatePartialCat} from "../validators/catSchema.js";
-import {CatModel} from "../model/catmodel.js";
+import {CatModel} from "../model/catmodel.js";    //Import del modelo
+import {validateCat, validatePartialCat} from "../validators/catSchema.js"; //Import del validador que usare en post y patch
 
  export class GatosController{
     static async getAllCats(req,res){
