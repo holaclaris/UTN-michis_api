@@ -1,9 +1,9 @@
 import { db } from "../dbConnection.js";
 
-export class CatModel{
-    //obtener todos los gatos
-    static async getAll(){
-        const [gatos,_info] = await db.query(
+export class CatModel {
+    //Obtener todos los gatos
+    static async getAll() {
+        const [gatos, _info] = await db.query(
             `SELECT 
             gatos.id,
             gatos.nombre,
@@ -18,8 +18,8 @@ export class CatModel{
         return gatos.length ? gatos : null;
     }
 
-    //obtener todos los gatos de una raza
-    static async searchByBreed(raza){
+    //Buscar por raza
+    static async searchByBreed(raza) {
         const [gatos, _info] = await db.query(
             `
             SELECT
@@ -37,8 +37,8 @@ export class CatModel{
         return gatos.length ? gatos : null
     }
 
-    //obtener gato por su id
-    static async searchById(gatoId){
+    //Buscar por id
+    static async searchById(gatoId) {
         const [gato, _info] = await db.query(
             `SELECT
             gatos.id,
@@ -55,9 +55,9 @@ export class CatModel{
         return gato.length ? gato : null;
     }
 
-    //Borrar gato por su id
-    static async deleteById(gatoId){
-        const[info] = await db.query(
+    //Eliminar por id
+    static async deleteById(gatoId) {
+        const [info] = await db.query(
             `DELETE FROM gatos.gatos
             WHERE id = ?`, [gatoId]
         );
@@ -65,30 +65,30 @@ export class CatModel{
     }
 
     //Crear nuevo gato
-    static async createOne(gato){
-        const {nombre, sexo, raza, edad, descripcion, img} = gato;
+    static async createOne(gato) {
+        const { nombre, sexo, raza, edad, descripcion, img } = gato;
         const [result, info] = await db.query(
             `INSERT INTO gatos.gatos (nombre, sexo, raza, edad, descripcion, img)
             VALUES
-            (?,?,?,?,?,?)`, [nombre, sexo, raza, edad, descripcion,img]
+            (?,?,?,?,?,?)`, [nombre, sexo, raza, edad, descripcion, img]
         );
         return result ? result : null;
     }
 
-    //actualizacion parcial de un gato existente
-    static async updateById(gatoId, partialCat){  //CHEQUEAR
+    //Actualizar por id
+    static async updateById(gatoId, partialCat) {  //CHEQUEAR
         let partialQuery = "";
-        for (const key in partialCat){
+        for (const key in partialCat) {
             partialQuery += `${key} = '${partialCat[key]}',`;
         }
-        partialQuery = partialQuery.slice(0,-1);
+        partialQuery = partialQuery.slice(0, -1);
 
         console.log(gatoId);
         console.log(partialQuery);
         const [info] = await db.query(
             `UPDATE gatos.gatos SET ${partialQuery} WHERE gatos.id = ?`,
             [gatoId]
-        ) 
+        )
         return info.affectedRows;
     }
 }
