@@ -1,2 +1,2 @@
-# UTN-michis_api
-API con gatos - TP de Full Stack UTN
+# UTN-michis_api - Api con gatos
+# Full Stack UTN - Clarisa Schiavi

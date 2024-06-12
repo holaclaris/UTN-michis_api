@@ -1,6 +1,7 @@
 import { Router } from "express";
-export const router = Router();
 import {GatosController} from "../controllers/controllers.js";
+
+export const router = Router();
 
 //Ver todos los gatos
 router.get("/", GatosController.getAllCats);
@@ -14,7 +15,7 @@ router.patch("/:gatoId", GatosController.updateById);
 //Buscar por raza
 router.get("/search", GatosController.searchByBreed);
 
-//Obtener gato por id
+//Buscar por id
 router.get("/:gatoId", GatosController.getById);
 
 //Eliminar por id

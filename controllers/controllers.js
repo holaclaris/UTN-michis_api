@@ -1,6 +1,4 @@
-
 import {validateCat, validatePartialCat} from "../validators/catSchema.js";
-
 import {CatModel} from "../model/catmodel.js";
 
  export class GatosController{

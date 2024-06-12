@@ -1,7 +1,6 @@
 import { db } from "../dbConnection.js";
 
 export class CatModel{
-
     //obtener todos los gatos
     static async getAll(){
         const [gatos,_info] = await db.query(
