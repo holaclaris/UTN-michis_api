@@ -76,7 +76,7 @@ export class CatModel {
     }
 
     //Actualizar por id
-    static async updateById(gatoId, partialCat) {  //CHEQUEAR
+    static async updateById(gatoId, partialCat) {  
         let partialQuery = "";
         for (const key in partialCat) {
             partialQuery += `${key} = '${partialCat[key]}',`;
