@@ -8,7 +8,7 @@ const PUERTO = process.env.PORT || 4000;
 //Middleware - funciones intermedias entre peticiones y respuestas
 app.use(express.json());  //Interpretar json
 app.use(cors());          //Manejar origen cruzado
-app.use(express.urlencoded({extended:true})); //Recibir info de un formulario en formato objeto.
+app.use(express.urlencoded({ extended:true })); //Recibir info de un formulario en formato objeto.
 
 //Health-check para verificar que el servidor esta corriendo
 app.get('/health', (req,res)=>{
