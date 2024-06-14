@@ -18,20 +18,21 @@ export class CatModel {
         return gatos.length ? gatos : null;
     }
 
-    //EN PROCESO !//// Busqueda general por cualquier coincidencia
-    //NOTA PARA EL FRONT:
-    // fetch(`http://localhost:4000/search-all?todo=${datoBuscado}`)
+    //Busqueda general por cualquier coincidencia
+    //NOTA PARA EL FRONT: fetch(`http://localhost:4000/search-all?todo=${datoBuscado}`)
+
     static async searchByAny(datoBuscado) {
+        const busqueda=`%${datoBuscado}%`
+
         const [gatos, _info] = await db.query(
             `SELECT * FROM gatos.gatos WHERE 
-            (gatos.nombre LIKE '%${datoBuscado}%') 
-            OR (gatos.sexo LIKE '%${datoBuscado}%') 
-            OR (gatos.raza LIKE '%${datoBuscado}%') 
-            OR (gatos.edad LIKE '%${datoBuscado}%') 
-            OR (gatos.descripcion LIKE '%${datoBuscado}%') 
-            OR (gatos.img LIKE '%${datoBuscado}%')`
-            // , [datoBuscado, datoBuscado, datoBuscado, datoBuscado, datoBuscado, datoBuscado]
-            //Consultar como pasar datoBuscado como parametro en este caso, para evitar inyecciones de codigo
+            (gatos.nombre LIKE ?) 
+            OR (gatos.sexo LIKE ?) 
+            OR (gatos.raza LIKE ?) 
+            OR (gatos.edad LIKE ?) 
+            OR (gatos.descripcion LIKE ?) 
+            OR (gatos.img LIKE ?)`
+            , [busqueda, busqueda, busqueda, busqueda, busqueda, busqueda]
         );
         return gatos.length ? gatos : null
     }
