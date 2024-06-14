@@ -18,6 +18,25 @@ export class CatModel {
         return gatos.length ? gatos : null;
     }
 
+    //EN PROCESO !//// Busqueda general por cualquier coincidencia
+    //NOTA PARA EL FRONT:
+    // fetch(`http://localhost:4000/search-all?todo=${datoBuscado}`)
+    static async searchByAny(datoBuscado) {
+        const [gatos, _info] = await db.query(
+            `SELECT * FROM gatos.gatos WHERE 
+            (gatos.nombre LIKE '%${datoBuscado}%') 
+            OR (gatos.sexo LIKE '%${datoBuscado}%') 
+            OR (gatos.raza LIKE '%${datoBuscado}%') 
+            OR (gatos.edad LIKE '%${datoBuscado}%') 
+            OR (gatos.descripcion LIKE '%${datoBuscado}%') 
+            OR (gatos.img LIKE '%${datoBuscado}%')`
+            // , [datoBuscado, datoBuscado, datoBuscado, datoBuscado, datoBuscado, datoBuscado]
+            //Consultar como pasar datoBuscado como parametro en este caso, para evitar inyecciones de codigo
+        );
+        return gatos.length ? gatos : null
+    }
+
+
     //Buscar por raza
     static async searchByBreed(raza) {
         const [gatos, _info] = await db.query(
@@ -76,7 +95,7 @@ export class CatModel {
     }
 
     //Actualizar por id
-    static async updateById(gatoId, partialCat) {  
+    static async updateById(gatoId, partialCat) {
         let partialQuery = "";
         for (const key in partialCat) {
             partialQuery += `${key} = '${partialCat[key]}',`;
@@ -91,4 +110,5 @@ export class CatModel {
         )
         return info.affectedRows;
     }
+
 }

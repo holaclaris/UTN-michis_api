@@ -12,6 +12,10 @@ router.post("/", GatosController.createCat);
 //Actualizar por id
 router.patch("/:gatoId", GatosController.updateById);
 
+//Busqueda general por cualquier coincidencia
+
+router.get("/search-all", GatosController.searchByAny)
+
 //Buscar por raza
 router.get("/search", GatosController.searchByBreed);
 
@@ -20,4 +24,5 @@ router.get("/:gatoId", GatosController.getById);
 
 //Eliminar por id
 router.delete("/:gatoId", GatosController.deleteById);
+
 

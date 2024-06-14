@@ -3,6 +3,7 @@ import { validateCat, validatePartialCat } from "../validators/catSchema.js"; //
 
 export class GatosController {
     //Obtener todos los gatos
+
     static async getAllCats(req, res) {
         const gatos = await CatModel.getAll();
         gatos
@@ -12,6 +13,18 @@ export class GatosController {
             : res
                 .status(404)
                 .json({ info: { status: 404, message: "No encontrado" } });
+    }
+
+    //EN PROCESO Busqueda general por cualquier coincidencia
+    static async searchByAny(req, res) {
+        const { todo } = req.query
+        const filteredByAny = await CatModel.searchByAny(todo)
+
+        if (!filteredByAny) {
+            res.json({ info: { status: 404, message: "No se encontraron gatos" } });
+        } else {
+            res.json({ info: { status: 200, message: "Ok" }, data: filteredByAny });
+        }  
     }
 
     //Buscar por raza
@@ -114,5 +127,7 @@ export class GatosController {
             : res.status(500)
                 .json({ info: { status: 500, message: "Error interno del servidor" } });
     }
+
+   
 
 }
