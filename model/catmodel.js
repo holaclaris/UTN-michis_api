@@ -18,7 +18,7 @@ export class CatModel {
         return gatos.length ? gatos : null;
     }
 
-    //Busqueda general por cualquier coincidencia
+    //Busqueda general por cualquier match
     //NOTA PARA EL FRONT: fetch(`http://localhost:4000/search-all?todo=${datoBuscado}`)
 
     static async searchByAny(datoBuscado) {

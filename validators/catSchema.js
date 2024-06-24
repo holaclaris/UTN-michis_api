@@ -28,13 +28,13 @@ const catSchema = z.object({
     .string({
         required_error: "Campo requerido"
     })
-    .min(3),
+    .min(1),
 
     img: z
     .string({
         required_error: "Campo requerido"
     })
-    .url()
+    // .url()
  });
 
  export function validateCat(object){
