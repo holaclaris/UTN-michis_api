@@ -99,15 +99,15 @@ export class CatModel {
     static async updateById(gatoId, partialCat) {
         let partialQuery = "";
         for (const key in partialCat) {
-            partialQuery += `${key} = '${partialCat[key]}',`;
+            partialQuery += `${key} = '${partialCat[key]}', `;
         }
-        partialQuery = partialQuery.slice(0, -1);
+        partialQuery = partialQuery.slice(0, -2);
 
         console.log(gatoId);
         console.log(partialQuery);
         const [info] = await db.query(
-            `UPDATE gatos.gatos SET ${partialQuery} WHERE gatos.id = ?`,
-            [gatoId]
+            // `UPDATE gatos.gatos SET ${partialQuery} WHERE id = ?`, [gatoId]
+            `UPDATE gatos.gatos SET ${partialQuery} WHERE id = ${gatoId}`
         )
         return info.affectedRows;
     }
