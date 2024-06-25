@@ -79,9 +79,8 @@ export class GatosController {
                     info: { status: 422, message: "Errores de validacion" },
                     errors: validationResult.error.issues
                 });
-        }
-
-        const gatoCreado = await CatModel.createOne({
+        } else {
+            const gatoCreado = await CatModel.createOne({
             ...validationResult.data
         });
         gatoCreado
@@ -91,7 +90,7 @@ export class GatosController {
             })
             : res
                 .status(500)
-                .json({ info: { status: 500, message: "Error interno del servidor" } });
+                .json({ info: { status: 500, message: "Error interno del servidor" } });}
     }
 
     //Actualizar por id
@@ -115,8 +114,8 @@ export class GatosController {
         if (!Object.keys(validationResult.data).length) {
             return res.status(422)
                 .json({ info: { status: 422, message: "Debe incluir al menos un campo valido" } });
-        }
-        const gatoActualizado = await CatModel.updateById(
+        } else{
+            const gatoActualizado = await CatModel.updateById(
             gatoId,
             validationResult.data
         );
@@ -125,9 +124,6 @@ export class GatosController {
                 info: { status: 200, message: "Gato actualizado con exito!" },
             })
             : res.status(500)
-                .json({ info: { status: 500, message: "Error interno del servidor" } });
+                .json({ info: { status: 500, message: "Error interno del servidor" } });}
     }
-
-   
-
 }

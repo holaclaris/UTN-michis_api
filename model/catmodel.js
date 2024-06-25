@@ -103,7 +103,6 @@ export class CatModel {
         }
         partialQuery = partialQuery.slice(0, -2);
 
-        console.log(gatoId);
         console.log(partialQuery);
         const [info] = await db.query(
             // `UPDATE gatos.gatos SET ${partialQuery} WHERE id = ?`, [gatoId]

@@ -34,7 +34,7 @@ const catSchema = z.object({
     .string({
         required_error: "Campo requerido"
     })
-    // .url()
+    .url()
  });
 
  export function validateCat(object){
