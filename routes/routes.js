@@ -14,7 +14,7 @@ router.patch("/:gatoId", GatosController.updateById);
 
 //Busqueda general por cualquier coincidencia
 
-router.get("/search-all", GatosController.searchByAny)
+router.get("/searchtodo", GatosController.searchByAny)
 
 //Buscar por raza
 router.get("/search", GatosController.searchByBreed);
