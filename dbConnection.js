@@ -1,4 +1,7 @@
 import mysql2 from "mysql2/promise";
+import { config } from "dotenv"
+
+config();
 
 const dbConfig = {
     host: "localhost",
