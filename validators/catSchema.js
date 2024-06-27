@@ -1,4 +1,5 @@
 import z from "zod";
+
 const catSchema = z.object({
     nombre: z
     .string({

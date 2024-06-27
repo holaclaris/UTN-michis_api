@@ -1,6 +1,7 @@
 import { db } from "../dbConnection.js";
 
 export class CatModel {
+
     //Obtener todos los gatos
     static async getAll() {
         const [gatos, _info] = await db.query(
@@ -18,7 +19,7 @@ export class CatModel {
         return gatos.length ? gatos : null;
     }
 
-    //Busqueda general por cualquier coincidencia
+    //Buscar en general (cualquier coincidencia)
     
     static async searchByAny(datoBuscado) {
         const busqueda=`%${datoBuscado}%`
@@ -35,7 +36,6 @@ export class CatModel {
         );
         return gatos.length ? gatos : null
     }
-
 
     //Buscar por raza
     static async searchByBreed(raza) {

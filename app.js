@@ -20,7 +20,6 @@ app.get('/health', (req,res)=>{
 
 app.use("/", router);
 
-
 app.listen(PUERTO, ((err)=>{
     console.log(err? err: `Servidor escuchando en puerto http://localhost:${PUERTO}`)
 }))

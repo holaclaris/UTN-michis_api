@@ -2,8 +2,8 @@ import { CatModel } from "../model/catmodel.js";    //Import del modelo
 import { validateCat, validatePartialCat } from "../validators/catSchema.js"; //Import del validador que usare en post y patch
 
 export class GatosController {
-    //Obtener todos los gatos
 
+    //Obtener todos los gatos
     static async getAllCats(req, res) {
         const gatos = await CatModel.getAll();
         gatos
@@ -15,7 +15,7 @@ export class GatosController {
                 .json({ info: { status: 404, message: "No encontrado" } });
     }
 
-    //EN PROCESO Busqueda general por cualquier coincidencia
+    //Buscar en general (cualquier coincidencia)
     static async searchByAny(req, res) {
         const { todo } = req.query
         const filteredByAny = await CatModel.searchByAny(todo)
